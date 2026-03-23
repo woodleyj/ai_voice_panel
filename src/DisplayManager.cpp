@@ -74,13 +74,12 @@ void DisplayManager::begin() {
     }
 
     // Initial UI render
-    setScreenColor(GREEN); 
-    drawUI();
+    gfx->fillScreen(BLACK);
+    setStateColor(GREEN); 
 }
 
-void DisplayManager::setScreenColor(uint16_t color) {
+void DisplayManager::setStateColor(uint16_t color) {
     if (_current_color != color && gfx) {
-        gfx->fillScreen(color);
         _current_color = color;
         drawUI(); // Redraw all UI elements on top of new color
     }
@@ -98,8 +97,30 @@ uint8_t DisplayManager::getBrightness() {
 }
 
 void DisplayManager::drawUI() {
+    _drawButton();
     _drawSlider();
     _drawStatus();
+}
+
+void DisplayManager::_drawButton() {
+    if (!gfx) return;
+    
+    // Draw a round button in the center
+    int center_x = 240;
+    int center_y = 240;
+    int radius = 100;
+
+    // Draw button
+    gfx->fillCircle(center_x, center_y, radius, _current_color);
+    
+    // Draw "Alfred" text inside the button
+    gfx->setTextColor(WHITE);
+    gfx->setTextSize(3);
+    
+    // Approximate centering of the word "Alfred"
+    // Font size 3 roughly means each char is 18px wide and 24px tall
+    gfx->setCursor(240 - 54, 240 - 10);
+    gfx->print("Alfred");
 }
 
 void DisplayManager::updateStatus(const char* status) {
@@ -142,7 +163,7 @@ void DisplayManager::_drawSlider() {
     int width = x_end - x_start;
 
     // Clear the slider strip area (y=400 to 480)
-    gfx->fillRect(0, 400, 480, 80, _current_color);
+    gfx->fillRect(0, 400, 480, 80, BLACK);
 
     // Draw track
     gfx->fillRect(x_start, slider_y - 2, width, 4, WHITE);

@@ -5,7 +5,7 @@
 class DisplayManager {
 public:
     void begin();
-    void setScreenColor(uint16_t color);
+    void setStateColor(uint16_t color);
     
     // Touch handling
     bool isTouched(int16_t &x, int16_t &y);
@@ -24,4 +24,5 @@ private:
     char _status[32] = "Disconnected";
     void _drawSlider();
     void _drawStatus();
+    void _drawButton();
 };

@@ -87,7 +87,7 @@ void loop() {
     // State: Recording / Streaming
     if (is_logically_touched) {
         if (!audioManager.isRecording()) {
-            displayManager.setScreenColor(0xF800); // Red
+            displayManager.setStateColor(0xF800); // Red
             
             // Start a fresh session
             int sid = networkManager.startNewSession();
@@ -125,11 +125,11 @@ void loop() {
     
     // UI Feedback State Machine
     if (audioManager.isRecording()) {
-        displayManager.setScreenColor(0xF800); // Red
+        displayManager.setStateColor(0xF800); // Red
     } else if (audioManager.isPlaying()) {
-        displayManager.setScreenColor(0xFD20); // Orange
+        displayManager.setStateColor(0xFD20); // Orange
     } else {
-        displayManager.setScreenColor(0x07E0); // Green
+        displayManager.setStateColor(0x07E0); // Green
     }
     
     audioManager.loop();
