@@ -139,18 +139,20 @@ void DisplayManager::_drawStatus() {
     
     if (connected) {
         // Draw Green Checkmark
-        gfx->drawLine(20, 25, 30, 35, GREEN);
-        gfx->drawLine(30, 35, 45, 15, GREEN);
+        gfx->drawLine(435, 25, 445, 35, GREEN);
+        gfx->drawLine(445, 35, 460, 15, GREEN);
         gfx->setTextColor(GREEN);
     } else {
         // Draw Red X
-        gfx->drawLine(20, 15, 40, 35, RED);
-        gfx->drawLine(40, 15, 20, 35, RED);
+        gfx->drawLine(435, 15, 455, 35, RED);
+        gfx->drawLine(455, 15, 435, 35, RED);
         gfx->setTextColor(RED);
     }
     
-    gfx->setTextSize(3);
-    gfx->setCursor(60, 12);
+    gfx->setTextSize(2);
+    // 12 pixels width per character at text size 2
+    int textWidth = strlen(_status) * 12;
+    gfx->setCursor(420 - textWidth, 16);
     gfx->printf("%s", _status);
 }
 
