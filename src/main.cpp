@@ -3,6 +3,7 @@
 #include "DisplayManager.h"
 #include "AudioManager.h"
 #include "NetworkManager.h"
+#include "secrets.h"
 
 AppController appController;
 DisplayManager displayManager;
@@ -18,7 +19,7 @@ void setup() {
     displayManager.begin(); // Initialized first so I2C expander powers up the audio codecs
     audioManager.begin();
     
-    networkManager.begin(&appController, &audioManager, "REMOVED_SSID", "REMOVED_PASSWORD"); 
+    networkManager.begin(&appController, &audioManager, WIFI_SSID, WIFI_PASS); 
     
     Serial.println("Setup Complete. Entering Push-To-Talk Loop.");
 }

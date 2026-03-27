@@ -17,3 +17,6 @@ demo/
 *.elf
 *.bin
 *.hex
+
+# Local Secrets
+include/secrets.h

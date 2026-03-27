@@ -1,12 +1,9 @@
 #include "NetworkManager.h"
 #include "AudioManager.h"
+#include "secrets.h"
 #include <Arduino.h>
 #include <WiFi.h>
 #include <ArduinoJson.h>
-
-// Replace with your actual Python server IP and Port!
-const char* WEBSOCKET_SERVER_IP = "192.168.0.124";
-const uint16_t WEBSOCKET_SERVER_PORT = 8765;
 
 void NetworkManager::begin(AppController* controller, AudioManager* audio, const char* ssid, const char* pass) {
     appController = controller;
